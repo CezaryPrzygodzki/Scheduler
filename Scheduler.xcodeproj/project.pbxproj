@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4922737224CB3ED700288A7C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4922737124CB3ED700288A7C /* Constants.swift */; };
+		495435A824CCA8B100D28032 /* AddPositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495435A724CCA8B100D28032 /* AddPositionViewController.swift */; };
 		495AAF9524C4DE2F008FECFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495AAF9424C4DE2F008FECFC /* AppDelegate.swift */; };
 		495AAF9724C4DE2F008FECFC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495AAF9624C4DE2F008FECFC /* SceneDelegate.swift */; };
 		495AAF9924C4DE2F008FECFC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495AAF9824C4DE2F008FECFC /* ViewController.swift */; };
@@ -14,9 +16,15 @@
 		495AAF9F24C4DE2F008FECFC /* Scheduler.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 495AAF9D24C4DE2F008FECFC /* Scheduler.xcdatamodeld */; };
 		495AAFA124C4DE33008FECFC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 495AAFA024C4DE33008FECFC /* Assets.xcassets */; };
 		495AAFA424C4DE33008FECFC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 495AAFA224C4DE33008FECFC /* LaunchScreen.storyboard */; };
+		499B93CE24C5FC620061AD9D /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499B93CD24C5FC620061AD9D /* Position.swift */; };
+		499B93D024C600280061AD9D /* PositionsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499B93CF24C600280061AD9D /* PositionsCollectionViewController.swift */; };
+		499B93D224C602E00061AD9D /* PositionsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499B93D124C602E00061AD9D /* PositionsCollectionViewCell.swift */; };
+		499B93D424C6103D0061AD9D /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499B93D324C6103D0061AD9D /* UIKitExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4922737124CB3ED700288A7C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		495435A724CCA8B100D28032 /* AddPositionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPositionViewController.swift; sourceTree = "<group>"; };
 		495AAF9124C4DE2F008FECFC /* Scheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scheduler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		495AAF9424C4DE2F008FECFC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		495AAF9624C4DE2F008FECFC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -26,6 +34,10 @@
 		495AAFA024C4DE33008FECFC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		495AAFA324C4DE33008FECFC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		495AAFA524C4DE33008FECFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		499B93CD24C5FC620061AD9D /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
+		499B93CF24C600280061AD9D /* PositionsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionsCollectionViewController.swift; sourceTree = "<group>"; };
+		499B93D124C602E00061AD9D /* PositionsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionsCollectionViewCell.swift; sourceTree = "<group>"; };
+		499B93D324C6103D0061AD9D /* UIKitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +86,8 @@
 		495AAFAB24C4E19B008FECFC /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				499B93D324C6103D0061AD9D /* UIKitExtensions.swift */,
+				4922737124CB3ED700288A7C /* Constants.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -81,6 +95,7 @@
 		495AAFAC24C4E1B6008FECFC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				499B93CD24C5FC620061AD9D /* Position.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -98,6 +113,9 @@
 			isa = PBXGroup;
 			children = (
 				495AAF9824C4DE2F008FECFC /* ViewController.swift */,
+				499B93CF24C600280061AD9D /* PositionsCollectionViewController.swift */,
+				499B93D124C602E00061AD9D /* PositionsCollectionViewCell.swift */,
+				495435A724CCA8B100D28032 /* AddPositionViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -176,7 +194,13 @@
 				495AAF9924C4DE2F008FECFC /* ViewController.swift in Sources */,
 				495AAF9F24C4DE2F008FECFC /* Scheduler.xcdatamodeld in Sources */,
 				495AAF9524C4DE2F008FECFC /* AppDelegate.swift in Sources */,
+				499B93CE24C5FC620061AD9D /* Position.swift in Sources */,
 				495AAF9724C4DE2F008FECFC /* SceneDelegate.swift in Sources */,
+				499B93D024C600280061AD9D /* PositionsCollectionViewController.swift in Sources */,
+				499B93D424C6103D0061AD9D /* UIKitExtensions.swift in Sources */,
+				4922737224CB3ED700288A7C /* Constants.swift in Sources */,
+				499B93D224C602E00061AD9D /* PositionsCollectionViewCell.swift in Sources */,
+				495435A824CCA8B100D28032 /* AddPositionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
