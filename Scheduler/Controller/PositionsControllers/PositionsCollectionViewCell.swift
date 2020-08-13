@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import CoreData
 
 
 class PositionsCollectionViewCell: UICollectionViewCell{
@@ -21,45 +21,44 @@ class PositionsCollectionViewCell: UICollectionViewCell{
         self.layer.cornerRadius = 15
         addSubview(nameLabel)
         addSubview(arrowButton)
+        //let posName = nameLabel.text
+       // let posNameCount = posName!.count
+        //print("\(posName) has \(posNameCount) characters in name")
+        configureArrowButton()
+        backgroundColor = Colors.darkPink
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func set(position:Position){
-        
-        nameLabel.text = position.name
-        let posName = position.name
-        let posNameCount = posName.count
-        //print("\(posName) has \(posNameCount) characters in name")
-        configureNameLabel(posNameCount)
-        configureArrowButton()
-        backgroundColor = Colors.darkPink
-    }
-    
-    func setNameLabelSize(_ count: CGFloat) -> Int{
+    func setNameLabelSize(_ count: CGFloat) -> CGFloat {
         nameLabel.font = UIFont.systemFont(ofSize: count, weight: .black)
-        return Int(count)
+        return CGFloat(count)
     }
     func configureNameLabel(_ count: Int){
+        let cellHeight : CGFloat = 80
+        let padding: CGFloat = 20
         var anchorLabel : CGFloat
         if (count < 3){
-            let textSize = setNameLabelSize(30)
-            anchorLabel = CGFloat((80/2)-(textSize/2))
-        } else if ((count>3)&&(count<9)){
+            let textSize = setNameLabelSize(40)
+            anchorLabel = ( cellHeight / 2 ) - ( textSize / 2 )
+        
+        } else if ( ( count >= 3 ) && ( count < 9 ) ) {
             let textSize = setNameLabelSize(20)
-            anchorLabel = CGFloat((80/2)-(textSize/2))
+            anchorLabel = ( cellHeight / 2 ) - ( textSize / 2 )
+            
         } else {
             let textSize = setNameLabelSize(20)
-            anchorLabel = CGFloat((80/2)-(textSize+3))
+            anchorLabel = ( cellHeight / 2 ) - ( textSize + 3 )
         }
+        print(anchorLabel)
         nameLabel.textColor = .white
-        nameLabel.numberOfLines = 2
+        nameLabel.numberOfLines = 0
         nameLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
         nameLabel.translatesAutoresizingMaskIntoConstraints                                        = false
         nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: anchorLabel ).isActive                  = true
-        nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive         = true
+        nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding).isActive         = true
         let cellWidth = self.frame.size.width
         nameLabel.widthAnchor.constraint(equalToConstant: (cellWidth*2/3)).isActive = true
     }

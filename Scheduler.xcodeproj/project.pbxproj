@@ -8,10 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		4922737224CB3ED700288A7C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4922737124CB3ED700288A7C /* Constants.swift */; };
+		495121AB24E00713008FC3C2 /* EditPositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495121AA24E00713008FC3C2 /* EditPositionViewController.swift */; };
+		495121AE24E1AEF3008FC3C2 /* ObserversToPositions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495121AD24E1AEF3008FC3C2 /* ObserversToPositions.swift */; };
+		495121B024E1B03C008FC3C2 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495121AF24E1B03C008FC3C2 /* Alert.swift */; };
 		495435A824CCA8B100D28032 /* AddPositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495435A724CCA8B100D28032 /* AddPositionViewController.swift */; };
+		495435AD24D49B4000D28032 /* PositionDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495435AC24D49B4000D28032 /* PositionDetails.swift */; };
 		495AAF9524C4DE2F008FECFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495AAF9424C4DE2F008FECFC /* AppDelegate.swift */; };
 		495AAF9724C4DE2F008FECFC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495AAF9624C4DE2F008FECFC /* SceneDelegate.swift */; };
-		495AAF9924C4DE2F008FECFC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495AAF9824C4DE2F008FECFC /* ViewController.swift */; };
 		495AAF9C24C4DE2F008FECFC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 495AAF9A24C4DE2F008FECFC /* Main.storyboard */; };
 		495AAF9F24C4DE2F008FECFC /* Scheduler.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 495AAF9D24C4DE2F008FECFC /* Scheduler.xcdatamodeld */; };
 		495AAFA124C4DE33008FECFC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 495AAFA024C4DE33008FECFC /* Assets.xcassets */; };
@@ -24,11 +27,14 @@
 
 /* Begin PBXFileReference section */
 		4922737124CB3ED700288A7C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		495121AA24E00713008FC3C2 /* EditPositionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPositionViewController.swift; sourceTree = "<group>"; };
+		495121AD24E1AEF3008FC3C2 /* ObserversToPositions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserversToPositions.swift; sourceTree = "<group>"; };
+		495121AF24E1B03C008FC3C2 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		495435A724CCA8B100D28032 /* AddPositionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPositionViewController.swift; sourceTree = "<group>"; };
+		495435AC24D49B4000D28032 /* PositionDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionDetails.swift; sourceTree = "<group>"; };
 		495AAF9124C4DE2F008FECFC /* Scheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scheduler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		495AAF9424C4DE2F008FECFC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		495AAF9624C4DE2F008FECFC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		495AAF9824C4DE2F008FECFC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		495AAF9B24C4DE2F008FECFC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		495AAF9E24C4DE2F008FECFC /* Scheduler.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Scheduler.xcdatamodel; sourceTree = "<group>"; };
 		495AAFA024C4DE33008FECFC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -51,6 +57,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		495121AC24E1AEB3008FC3C2 /* PositionsControllers */ = {
+			isa = PBXGroup;
+			children = (
+				499B93CF24C600280061AD9D /* PositionsCollectionViewController.swift */,
+				499B93D124C602E00061AD9D /* PositionsCollectionViewCell.swift */,
+				495435A724CCA8B100D28032 /* AddPositionViewController.swift */,
+				495121AA24E00713008FC3C2 /* EditPositionViewController.swift */,
+				495435AC24D49B4000D28032 /* PositionDetails.swift */,
+				495121AD24E1AEF3008FC3C2 /* ObserversToPositions.swift */,
+			);
+			path = PositionsControllers;
+			sourceTree = "<group>";
+		};
 		495AAF8824C4DE2F008FECFC = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +107,7 @@
 			children = (
 				499B93D324C6103D0061AD9D /* UIKitExtensions.swift */,
 				4922737124CB3ED700288A7C /* Constants.swift */,
+				495121AF24E1B03C008FC3C2 /* Alert.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -112,10 +132,7 @@
 		495AAFAE24C4E1CB008FECFC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				495AAF9824C4DE2F008FECFC /* ViewController.swift */,
-				499B93CF24C600280061AD9D /* PositionsCollectionViewController.swift */,
-				499B93D124C602E00061AD9D /* PositionsCollectionViewCell.swift */,
-				495435A724CCA8B100D28032 /* AddPositionViewController.swift */,
+				495121AC24E1AEB3008FC3C2 /* PositionsControllers */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -191,16 +208,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				495AAF9924C4DE2F008FECFC /* ViewController.swift in Sources */,
 				495AAF9F24C4DE2F008FECFC /* Scheduler.xcdatamodeld in Sources */,
 				495AAF9524C4DE2F008FECFC /* AppDelegate.swift in Sources */,
 				499B93CE24C5FC620061AD9D /* Position.swift in Sources */,
 				495AAF9724C4DE2F008FECFC /* SceneDelegate.swift in Sources */,
 				499B93D024C600280061AD9D /* PositionsCollectionViewController.swift in Sources */,
+				495121B024E1B03C008FC3C2 /* Alert.swift in Sources */,
 				499B93D424C6103D0061AD9D /* UIKitExtensions.swift in Sources */,
 				4922737224CB3ED700288A7C /* Constants.swift in Sources */,
+				495435AD24D49B4000D28032 /* PositionDetails.swift in Sources */,
 				499B93D224C602E00061AD9D /* PositionsCollectionViewCell.swift in Sources */,
+				495121AB24E00713008FC3C2 /* EditPositionViewController.swift in Sources */,
 				495435A824CCA8B100D28032 /* AddPositionViewController.swift in Sources */,
+				495121AE24E1AEF3008FC3C2 /* ObserversToPositions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

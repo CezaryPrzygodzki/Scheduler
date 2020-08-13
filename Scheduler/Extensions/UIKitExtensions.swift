@@ -46,6 +46,13 @@ extension UIButton{
         self.layer.cornerRadius = self.frame.size.height / 2
         self.clipsToBounds = true
     }
+    
+    func setProfileButton (button: String){
+        self.setBackgroundImage(UIImage(systemName: button), for: .normal)
+        self.tintColor = .white
+    }
+    
+    
 }
 
 extension UITextField{
