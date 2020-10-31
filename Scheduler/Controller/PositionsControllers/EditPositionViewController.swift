@@ -25,6 +25,7 @@ class EditPositionViewController: AddPositionViewController {
         super.viewDidLoad()
         configureNavigationBar()
 
+        
         addButton.setTitle("Zapisz", for: .normal)
         textFieldName.text = positionToEdit!.value(forKey: "name") as? String
         textFieldAfterWork.text = positionToEdit!.value(forKey: "afterWork") as? String
@@ -66,9 +67,11 @@ class EditPositionViewController: AddPositionViewController {
     func configureNavigationBar() {
         let height = 75
         let navbar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: Int(UIScreen.main.bounds.size.width), height: height))
-        navbar.barTintColor = Colors.lightGray2
-        navbar.titleTextAttributes = [.foregroundColor: Colors.darkPink]
-        navbar.tintColor = Colors.darkPink
+        navbar.barTintColor = Colors.schedulerDarkGray
+        navbar.titleTextAttributes = [.foregroundColor: Colors.schedulerPink!]
+        navbar.tintColor = Colors.schedulerPink
+        
+        self.additionalSafeAreaInsets.top = CGFloat(height)
         
         let navItem = UINavigationItem()
         navItem.title = "Edytuj stanowisko"

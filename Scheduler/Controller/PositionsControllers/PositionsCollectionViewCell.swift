@@ -25,7 +25,7 @@ class PositionsCollectionViewCell: UICollectionViewCell{
        // let posNameCount = posName!.count
         //print("\(posName) has \(posNameCount) characters in name")
         configureArrowButton()
-        backgroundColor = Colors.darkPink
+        backgroundColor = Colors.schedulerPink
     }
     
     required init?(coder: NSCoder) {

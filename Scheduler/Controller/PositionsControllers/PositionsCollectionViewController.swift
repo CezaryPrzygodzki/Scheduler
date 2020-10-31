@@ -38,6 +38,10 @@ class PositionsCollectionViewController: UIViewController{
         
         
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        self.tabBarController?.tabBar.tintColor = Colors.schedulerPink
+    }
  
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,14 +70,16 @@ class PositionsCollectionViewController: UIViewController{
     }
     
     func configureNavigationAndTabBarControllers(){
+
+        self.tabBarController?.tabBar.tintColor = Colors.schedulerPink
         title = "Stanowiska"
-        navigationController?.setStatusBar(backgroundColor: Colors.lightGray2)
-        navigationController?.navigationBar.backgroundColor = Colors.lightGray2 //large nav bar
-        navigationController?.navigationBar.barTintColor = Colors.lightGray2 //small nav bar
+        navigationController?.setStatusBar(backgroundColor: Colors.schedulerDarkGray!)
+        navigationController?.navigationBar.backgroundColor = Colors.schedulerDarkGray //large nav bar
+        navigationController?.navigationBar.barTintColor = Colors.schedulerDarkGray //small nav bar
         navigationController?.navigationBar.isTranslucent = false
-        tabBarController?.tabBar.barTintColor = Colors.lightGray2
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: Colors.darkPink]
-        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: Colors.darkPink]
+        tabBarController?.tabBar.barTintColor = Colors.schedulerDarkGray
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: Colors.schedulerPink!]
+        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: Colors.schedulerPink!]
     }
     func configureCollectionView(){
         view.addSubview(collectionView)
@@ -87,7 +93,7 @@ class PositionsCollectionViewController: UIViewController{
         collectionView.register(PositionsCollectionViewCell.self, forCellWithReuseIdentifier: positionCollectionViewCellIdentifier)
         //set contraits
         collectionView.pin(to: view)   //go to UIViewExtension to see more
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .systemBackground
         
         
     }
@@ -108,7 +114,7 @@ class PositionsCollectionViewController: UIViewController{
             imageView.isUserInteractionEnabled = true
             imageView.addGestureRecognizer(tapGestureRecognizer)
             
-        imageView.tintColor = Colors.darkPink
+        imageView.tintColor = Colors.schedulerPink
             NSLayoutConstraint.activate([
             imageView.rightAnchor.constraint(equalTo: navigationBar.rightAnchor, constant: -16),
             imageView.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor, constant: -12),
@@ -135,7 +141,7 @@ class PositionsCollectionViewController: UIViewController{
     }
     func configureBlurEffect() -> UIButton{
         let blurView = UIButton()
-        blurView.backgroundColor = Colors.lightGray1.withAlphaComponent(0.5)
+        blurView.backgroundColor = Colors.schedulerLightGray!.withAlphaComponent(0.5)
         
         view.addSubview(blurView)
         blurView.pin(to: view)
@@ -190,6 +196,7 @@ extension PositionsCollectionViewController: UICollectionViewDelegate,UICollecti
         positionDetails.afterWorkLabel.text = position.value(forKey: "afterWork") as? String
         positionDetails.staticPosition = position
         positionToEdit = position
+        
         
     }
     

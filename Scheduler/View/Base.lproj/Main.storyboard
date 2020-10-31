@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,13 +27,13 @@
             </objects>
             <point key="canvasLocation" x="-20" y="-1741"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="d9k-Mu-1kh">
             <objects>
                 <navigationController id="Q2a-pX-P8l" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="ZHd-nc-ANa"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="geD-xZ-ZFY">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <tabBarItem key="tabBarItem" title="" image="person.crop.circle.fill" catalog="system" id="ZHd-nc-ANa"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="geD-xZ-ZFY">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -41,12 +42,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dWY-LQ-hAZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1052" y="-788"/>
+            <point key="canvasLocation" x="-3107" y="-770"/>
         </scene>
-        <!--View Controller-->
+        <!--Employee View Controller-->
         <scene sceneID="fX6-1f-J5X">
             <objects>
-                <viewController id="RBB-cK-0pd" sceneMemberID="viewController">
+                <viewController id="RBB-cK-0pd" customClass="EmployeeViewController" customModule="Scheduler" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dEy-71-oHs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -54,18 +55,39 @@
                         <viewLayoutGuide key="safeArea" id="o4f-Iw-Y3E"/>
                     </view>
                     <navigationItem key="navigationItem" id="iUr-tr-XHE"/>
+                    <connections>
+                        <segue destination="QWu-z8-QSR" kind="show" destinationCreationSelector="addEmployee" id="53O-ou-YxB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hp9-Kr-dqc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1068" y="-25"/>
+            <point key="canvasLocation" x="-3107" y="-6"/>
         </scene>
-        <!--Item-->
+        <!--Edit Employee View Controller-->
+        <scene sceneID="sKf-7h-SAd">
+            <objects>
+                <viewController storyboardIdentifier="editEmployee" id="FTc-h0-FSH" customClass="EditEmployeeViewController" customModule="Scheduler" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7pI-u5-22a">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Ede-YY-Bqe"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="jEh-o0-fpM"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eE4-q1-nOD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2197.1014492753625" y="747.99107142857144"/>
+        </scene>
+        <!--Navigation Controller-->
         <scene sceneID="DyM-xD-OSX">
             <objects>
                 <navigationController id="xDJ-eo-SpK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="XPE-5m-u2j"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="m3w-6m-De3">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <tabBarItem key="tabBarItem" title="" image="calendar.circle.fill" catalog="system" id="XPE-5m-u2j">
+                        <color key="badgeColor" name="SchedulerPurple"/>
+                    </tabBarItem>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="m3w-6m-De3">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -76,11 +98,13 @@
             </objects>
             <point key="canvasLocation" x="-20" y="-788"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="s5l-4u-gIX">
             <objects>
                 <navigationController id="Kd8-E5-GSK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="YmD-Bq-SoE"/>
+                    <tabBarItem key="tabBarItem" title="" image="folder.circle.fill" catalog="system" id="YmD-Bq-SoE">
+                        <color key="badgeColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="n4c-sK-Foh">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -102,10 +126,10 @@
             </objects>
             <point key="canvasLocation" x="870" y="-770"/>
         </scene>
-        <!--View Controller-->
+        <!--Schedule View Controller-->
         <scene sceneID="gBW-Yb-BXd">
             <objects>
-                <viewController id="7M1-UO-KCw" sceneMemberID="viewController">
+                <viewController id="7M1-UO-KCw" customClass="ScheduleViewController" customModule="Scheduler" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zrr-VC-mVa">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -144,7 +168,7 @@
                     <view key="view" contentMode="scaleToFill" id="bJ2-9l-VyL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" name="SchedulerBackground"/>
                         <viewLayoutGuide key="safeArea" id="jTZ-jP-XGN"/>
                     </view>
                     <navigationItem key="navigationItem" id="cTM-3i-8be"/>
@@ -186,7 +210,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aSl-BM-E4p" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2600" y="747.99107142857144"/>
+            <point key="canvasLocation" x="4418.840579710145" y="747.99107142857144"/>
+        </scene>
+        <!--Add Employee View Controller-->
+        <scene sceneID="90l-4c-wjs">
+            <objects>
+                <viewController storyboardIdentifier="addEmployee" id="hNg-NI-T0K" customClass="AddEmployeeViewController" customModule="Scheduler" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GdD-eX-uyq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" name="SchedulerBackground"/>
+                        <viewLayoutGuide key="safeArea" id="Hfx-qB-shI"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="O6K-jZ-Of3"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BmF-Wu-PYl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1381" y="-6"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="q5u-Mm-1lH">
@@ -205,7 +245,55 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CiD-98-gmw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1689.8550724637682" y="747.99107142857144"/>
+            <point key="canvasLocation" x="3508.6956521739135" y="747.99107142857144"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="wsS-d3-kki">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QWu-z8-QSR" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="vwi-EL-wA6"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LFY-7p-qbe">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="hNg-NI-T0K" kind="relationship" relationship="rootViewController" id="ki4-8R-djU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cN0-cc-twl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2203" y="-6"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="pvk-pV-1hk">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VQD-qp-Hzt" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8LJ-iG-orD">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="FTc-h0-FSH" kind="relationship" relationship="rootViewController" id="9Ak-fn-mD7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dBe-i2-6v9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3107.2463768115945" y="747.99107142857144"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="calendar.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="folder.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="person.crop.circle.fill" catalog="system" width="128" height="121"/>
+        <namedColor name="SchedulerBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="SchedulerPurple">
+            <color red="0.45500001311302185" green="0.33300000429153442" blue="0.91399997472763062" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+    </resources>
 </document>

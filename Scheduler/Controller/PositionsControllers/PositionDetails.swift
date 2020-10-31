@@ -15,9 +15,9 @@ class PositionDetails: UIView {
     //Dimensions
     let screenWidth = UIScreen.main.bounds.size.width
     let screenHeight = UIScreen.main.bounds.size.height
-    let padding : CGFloat = 20
-    let positionDetailWidth = UIScreen.main.bounds.size.width - 100
-    let positionDetailHeight = UIScreen.main.bounds.size.height - 300
+    var padding : CGFloat = 20
+    var positionDetailWidth = UIScreen.main.bounds.size.width - 100
+    var positionDetailHeight = UIScreen.main.bounds.size.height - 300
     
     var nameLabel = UILabel()
     var beforeWorkLabel = UILabel()
@@ -34,7 +34,7 @@ class PositionDetails: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = Colors.darkPink
+        backgroundColor = Colors.schedulerPink
         layer.cornerRadius = 10
         
         self.frame.size.height = 375
@@ -166,7 +166,7 @@ class PositionDetails: UIView {
           UIApplication.shared.delegate as? AppDelegate else {
           return
         }
-        
+       
         let managedContext = appDelegate.persistentContainer.viewContext
         managedContext.delete(staticPosition!)
         do {

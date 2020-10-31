@@ -17,10 +17,12 @@ class AddPositionViewController: UIViewController{
     var textFieldAfterWork = UITextView()
     var addButton = UIButton()
     var position = NSManagedObject()
+    
 
     
     override func viewDidLoad() {
     super.viewDidLoad()
+        
         configureNavigationController()
     
         textFieldName = createTextFieldName()
@@ -32,12 +34,13 @@ class AddPositionViewController: UIViewController{
     }
     
     func configureNavigationController(){
+        
         title = "Nowe stanowisko"
-        navigationController?.navigationBar.barTintColor = Colors.lightGray2 //small nav bar
+        navigationController?.navigationBar.barTintColor = Colors.schedulerDarkGray //small nav bar
         navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: Colors.darkPink]
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: Colors.schedulerPink!]
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Anuluj", style: .plain, target: self, action: #selector(anuluj))
-        navigationController?.navigationBar.tintColor = Colors.darkPink
+        navigationController?.navigationBar.tintColor = Colors.schedulerPink
     }
     
     @objc
@@ -48,7 +51,7 @@ class AddPositionViewController: UIViewController{
     func createTextFieldName()->UITextField{
         let textFieldName = UITextField()
         //placeholder
-        textFieldName.centerAndColorPlaceholder(color: Colors.darkPink, placeholder: "Nazwa")
+        textFieldName.centerAndColorPlaceholder(color: Colors.schedulerPink!, placeholder: "Nazwa")
         
         //size and position in view
         textFieldName.frame.size.width = view.frame.size.width - (CGFloat(padding)*2)
@@ -62,7 +65,7 @@ class AddPositionViewController: UIViewController{
         //bottom border
         let bottomLine = CALayer()
         bottomLine.frame = CGRect(x: 0, y: textFieldName.frame.height - 3, width: textFieldName.frame.width, height: 3)
-        bottomLine.backgroundColor = Colors.lightGray1.cgColor
+        bottomLine.backgroundColor = Colors.schedulerLightGray!.cgColor
         textFieldName.borderStyle = UITextField.BorderStyle.none
         textFieldName.layer.addSublayer(bottomLine)
         
@@ -73,7 +76,7 @@ class AddPositionViewController: UIViewController{
     func createTextBeforeWork()->UITextView{
         let textFieldBeforeWork = UITextView()
         //placeholder
-        textFieldBeforeWork.textColor = Colors.darkPink
+        textFieldBeforeWork.textColor = Colors.schedulerPink
         textFieldBeforeWork.text = "Przed otwarciem: "
         
         //size and position in view
@@ -87,7 +90,8 @@ class AddPositionViewController: UIViewController{
         
         //borders
         textFieldBeforeWork.layer.borderWidth = 3
-        textFieldBeforeWork.layer.borderColor = Colors.lightGray1.cgColor
+        textFieldBeforeWork.layer.borderColor = Colors.schedulerLightGray!.cgColor
+        textFieldBeforeWork.backgroundColor = Colors.schedulerBackground
         
         self.view.addSubview(textFieldBeforeWork)
 
@@ -97,7 +101,7 @@ class AddPositionViewController: UIViewController{
         let textFieldAfterWork = UITextView()
         
         //placeholder
-        textFieldAfterWork.textColor = Colors.darkPink
+        textFieldAfterWork.textColor = Colors.schedulerPink
         textFieldAfterWork.text = "Po otwarciu: "
         
         //size and position in view
@@ -110,8 +114,9 @@ class AddPositionViewController: UIViewController{
                                           height: textFieldAfterWork.frame.size.height)
         
         //borders
-        textFieldAfterWork.layer.borderColor = Colors.lightGray1.cgColor
+        textFieldAfterWork.layer.borderColor = Colors.schedulerLightGray!.cgColor
         textFieldAfterWork.layer.borderWidth = 3
+        textFieldAfterWork.backgroundColor = Colors.schedulerBackground
         
         self.view.addSubview(textFieldAfterWork)
         
@@ -121,7 +126,7 @@ class AddPositionViewController: UIViewController{
     func createAddButton() -> UIButton {
         let addButton = UIButton()
         addButton.setTitle("Dodaj", for: UIControl.State.normal)
-        addButton.setTitleColor(Colors.darkPink, for: .normal)
+        addButton.setTitleColor(Colors.schedulerPink, for: .normal)
         addButton.titleLabel?.font = UIFont.systemFont(ofSize: 20.0, weight: .semibold)
         addButton.frame.size.width = 100
         addButton.frame.size.height = 50
@@ -131,7 +136,7 @@ class AddPositionViewController: UIViewController{
                                           width: addButton.frame.size.width,
                                           height: addButton.frame.size.height)
         
-        addButton.backgroundColor = Colors.lightGray1
+        addButton.backgroundColor = Colors.schedulerLightGray!
         
         addButton.layer.cornerRadius = 5
         
@@ -202,18 +207,18 @@ extension AddPositionViewController: UITextViewDelegate {
 //            textFieldBeforeWork.textColor = UIColor.black
 //        }
 //        if textFieldAfterWork.textColor == Colors.darkPink {
-//            textFieldAfterWork.text = ""
+//            textFieldAfterWork.text = "–––__-
 //            textFieldAfterWork.textColor = UIColor.black
 //        }
     }
     func textViewDidEndEditing (_ textView: UITextView) {
         if textFieldBeforeWork.text.isEmpty || textFieldBeforeWork.text == "" {
-            textFieldBeforeWork.textColor = Colors.darkPink
-            textFieldBeforeWork.text = "Przed otwarciem"
+            textFieldBeforeWork.textColor = Colors.schedulerPink
+            textFieldBeforeWork.text = "Przed otwarciem: "
         }
         if textFieldAfterWork.text.isEmpty || textFieldAfterWork.text == "" {
-            textFieldAfterWork.textColor = Colors.darkPink
-            textFieldAfterWork.text = "Po otwarciu"
+            textFieldAfterWork.textColor = Colors.schedulerPink
+            textFieldAfterWork.text = "Po otwarciu: "
         }
     }
 }
