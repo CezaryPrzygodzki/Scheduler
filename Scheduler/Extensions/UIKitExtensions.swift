@@ -2,12 +2,11 @@
 //  UIKitExtensions.swift
 //  Scheduler
 //
-//  Created by Cezary Przygodzki on 20/07/2020.
-//  Copyright © 2020 PekackaPrzygodzki. All rights reserved.
+//  Created by Cezary Przygodzki on 01/11/2020.
+//  Copyright © 2020 Siemaszefie. All rights reserved.
 //
 
 import Foundation
-
 import  UIKit
 
 extension UIView {
@@ -146,3 +145,4 @@ class PaddingLabel: UILabel {
         }
     }
 }
+

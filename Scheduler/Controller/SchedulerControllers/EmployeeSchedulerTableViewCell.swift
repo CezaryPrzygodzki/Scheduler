@@ -2,8 +2,8 @@
 //  EmployeeSchedulerTableViewCell.swift
 //  Scheduler
 //
-//  Created by Cezary Przygodzki on 30/10/2020.
-//  Copyright © 2020 PekackaPrzygodzki. All rights reserved.
+//  Created by Cezary Przygodzki on 01/11/2020.
+//  Copyright © 2020 Siemaszefie. All rights reserved.
 //
 
 import UIKit
@@ -32,5 +32,5 @@ class EmployeeSchedulerTableViewCell: EmployeeTableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
 }

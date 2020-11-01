@@ -2,23 +2,24 @@
 //  EmployeeViewController.swift
 //  Scheduler
 //
-//  Created by Cezary Przygodzki on 11/10/2020.
-//  Copyright © 2020 PekackaPrzygodzki. All rights reserved.
+//  Created by Cezary Przygodzki on 01/11/2020.
+//  Copyright © 2020 Siemaszefie. All rights reserved.
 //
 
 import UIKit
 import CoreData
 
 class EmployeeViewController: UIViewController {
-    
+
     var employeeTableView: UITableView!
     let employeeTableViewCellIdentifier = "employeeTableViewCellIdentifier"
-    var employees: [NSManagedObject] = []
-    
-     var blurEffect = UIButton()
+    var employees: [Employee] = []
+       
+    var blurEffect = UIButton()
     var employeeDetails = EmployeeDetails() //UIView of employee details
+       
+    var emplyeeToEdit = Employee()//Variable that stores the temporiraly used employee
     
-    var emplyeeToEdit = NSManagedObject()//Variable that stores the temporiraly used employee
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,10 +33,13 @@ class EmployeeViewController: UIViewController {
         employeeTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15).isActive = true
         employeeTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive       = true
         
+        
+        
         createAddButton()
         
         blurEffect = configureBlurEffect()
         blurEffect.isHidden = true
+        
         
         NotificationCenter.default.addObserver(self, selector: #selector(didChangePosition), name: Notification.Name("reloadEmployee"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(hideEmplyeeDetails), name: Notification.Name("hideEmployee"), object: nil)
@@ -71,7 +75,7 @@ class EmployeeViewController: UIViewController {
         super.viewWillAppear(animated)
         loadData()
     }
-
+    
     func createAddButton(){
     let imageView = UIImageView(image: UIImage(systemName: "plus.circle.fill"))
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(addButtonAction))
@@ -101,6 +105,7 @@ class EmployeeViewController: UIViewController {
         
         navigationController?.showDetailViewController(addVC, sender: true)
     }
+    
     func configureNavigationAndTabBarControllers(){
 
         self.tabBarController?.tabBar.tintColor = Colors.schedulerBlue
@@ -131,7 +136,7 @@ class EmployeeViewController: UIViewController {
         
                 
     }
-    
+
     func configureEmployeeDetails() -> EmployeeDetails {
         let empDetails = EmployeeDetails()
         
@@ -160,40 +165,39 @@ class EmployeeViewController: UIViewController {
        }
     
     func loadData(){
-        
+    
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
-               
+           
         let context = appDelegate.persistentContainer.viewContext
-        
+    
         do {
             employees = try context.fetch(Employee.fetchRequest())
-            
+        
         } catch let error as NSError {
-              print("Could not fetch. \(error), \(error.userInfo)")
+            print("Could not fetch. \(error), \(error.userInfo)")
             }
             DispatchQueue.main.async {
                 self.employeeTableView.reloadData()
             }
         }
     
-    func backFromEditEmployeeControllerToDetailsController(data: NSManagedObject){
+    
+    func backFromEditEmployeeControllerToDetailsController(data: Employee){
         print("Data received: \(data)")
-        employeeDetails.nameLabel.text = data.value(forKey: "name") as? String
-        employeeDetails.surnameLabel.text = data.value(forKey: "surname") as? String
-        employeeDetails.positionLabel.text = data.value(forKey: "position") as? String
+        employeeDetails.nameLabel.text = data.name
+        employeeDetails.surnameLabel.text = data.surname
+        employeeDetails.positionLabel.text = data.position
 
-        if let image = data.value(forKey: "image"){
-            let imageToShow = UIImage(data: image as! Data)
+        if let image = data.image{
+            let imageToShow = UIImage(data: image)
             employeeDetails.profileImageView.image = imageToShow
             }
-        employeeDetails.staticPosition = data
+        employeeDetails.staticEmployee = data
         emplyeeToEdit = data
     }
-    
 }
-    
 
 
 extension EmployeeViewController: UITableViewDelegate, UITableViewDataSource {
@@ -209,11 +213,11 @@ extension EmployeeViewController: UITableViewDelegate, UITableViewDataSource {
         }
 
         let employeeToShow = employees[indexPath.row]
-        cell.employeeNameLabel.text = employeeToShow.value(forKey: "name") as? String
-        cell.employeeSurnameLabel.text = employeeToShow.value(forKey: "surname") as? String
-        cell.positionLabel.text = employeeToShow.value(forKey: "position") as? String
-        if let image = employeeToShow.value(forKey: "image"){
-            let imageToShow = UIImage(data: image as! Data)
+        cell.employeeNameLabel.text = employeeToShow.name
+        cell.employeeSurnameLabel.text = employeeToShow.surname
+        cell.positionLabel.text = employeeToShow.position
+        if let image = employeeToShow.image{
+            let imageToShow = UIImage(data: image)
             cell.profileImageView.image = imageToShow
         }
 
@@ -231,15 +235,15 @@ extension EmployeeViewController: UITableViewDelegate, UITableViewDataSource {
         employeeDetails = configureEmployeeDetails()
         let employeeToShow = employees[indexPath.row]
         
-        employeeDetails.nameLabel.text = employeeToShow.value(forKey: "name") as? String
-        employeeDetails.surnameLabel.text = employeeToShow.value(forKey: "surname") as? String
-        employeeDetails.positionLabel.text = employeeToShow.value(forKey: "position") as? String
+        employeeDetails.nameLabel.text = employeeToShow.name
+        employeeDetails.surnameLabel.text = employeeToShow.surname
+        employeeDetails.positionLabel.text = employeeToShow.position
 
-        if let image = employeeToShow.value(forKey: "image"){
-            let imageToShow = UIImage(data: image as! Data)
+        if let image = employeeToShow.image{
+            let imageToShow = UIImage(data: image)
             employeeDetails.profileImageView.image = imageToShow
         }
-        employeeDetails.staticPosition = employeeToShow
+        employeeDetails.staticEmployee = employeeToShow
         emplyeeToEdit = employeeToShow
         
     }

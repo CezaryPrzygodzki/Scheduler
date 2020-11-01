@@ -2,8 +2,8 @@
 //  EditPositionViewController.swift
 //  Scheduler
 //
-//  Created by Cezary Przygodzki on 09/08/2020.
-//  Copyright © 2020 PekackaPrzygodzki. All rights reserved.
+//  Created by Cezary Przygodzki on 01/11/2020.
+//  Copyright © 2020 Siemaszefie. All rights reserved.
 //
 
 import UIKit
@@ -11,7 +11,7 @@ import CoreData
 
 class EditPositionViewController: AddPositionViewController {
     
-    var positionToEdit: NSManagedObject?
+    var positionToEdit: Position?
     var positionController: PositionsCollectionViewController?
     
     override func configureNavigationController() {
@@ -27,9 +27,9 @@ class EditPositionViewController: AddPositionViewController {
 
         
         addButton.setTitle("Zapisz", for: .normal)
-        textFieldName.text = positionToEdit!.value(forKey: "name") as? String
-        textFieldAfterWork.text = positionToEdit!.value(forKey: "afterWork") as? String
-        textFieldBeforeWork.text = positionToEdit!.value(forKey: "beforeWork") as? String
+        textFieldName.text = positionToEdit!.name
+        textFieldAfterWork.text = positionToEdit!.afterWork
+        textFieldBeforeWork.text = positionToEdit!.beforeWork
         
         
     }
@@ -46,11 +46,10 @@ class EditPositionViewController: AddPositionViewController {
         
         let context = appDelegate.persistentContainer.viewContext
         
-        let position = positionToEdit
-        
-        position?.setValue(name, forKey: "name")
-        position?.setValue(beforeWork, forKey: "beforeWork")
-        position?.setValue(afterWork, forKey: "afterWork")
+        positionToEdit?.name = name
+        positionToEdit?.afterWork = afterWork
+        positionToEdit?.beforeWork = beforeWork
+
         
          do {
             try context.save()
@@ -59,7 +58,7 @@ class EditPositionViewController: AddPositionViewController {
             }
         NotificationCenter.default.post(name: Notification.Name("reload"), object: nil)
         
-        positionController?.backFromEditPositionControllerToDetailsController(data: position!)
+        positionController?.backFromEditPositionControllerToDetailsController(data: positionToEdit!)
         dismiss(animated: true, completion: nil)
 
     }

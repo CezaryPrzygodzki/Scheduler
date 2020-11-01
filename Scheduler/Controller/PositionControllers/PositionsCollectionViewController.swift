@@ -2,19 +2,17 @@
 //  PositionsCollectionViewController.swift
 //  Scheduler
 //
-//  Created by Cezary Przygodzki on 20/07/2020.
-//  Copyright © 2020 PekackaPrzygodzki. All rights reserved.
+//  Created by Cezary Przygodzki on 01/11/2020.
+//  Copyright © 2020 Siemaszefie. All rights reserved.
 //
+
 
 import UIKit
 import CoreData
 
+class PositionsCollectionViewController: UIViewController {
 
-
-
-class PositionsCollectionViewController: UIViewController{
-    
-    var positions: [NSManagedObject] = [] //List of loaded positions
+    var positions: [Position] = [] //List of loaded positions
     
     var collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout.init())
     let layout = UICollectionViewFlowLayout.init()
@@ -24,31 +22,32 @@ class PositionsCollectionViewController: UIViewController{
     
     var positionDetails = PositionDetails()//UIView of Position Details
     
-    var positionToEdit = NSManagedObject()//Variable that stores the temporiraly used position
+    var positionToEdit = Position()//Variable that stores the temporiraly used position
+    
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        configureNavigationAndTabBarControllers()
-        createAddButton()
-        configureCollectionView()
-        blurEffect = configureBlurEffect()
-        blurEffect.isHidden = true
-        
-        observers()
-        
-        
+         super.viewDidLoad()
+               configureNavigationAndTabBarControllers()
+               createAddButton()
+               configureCollectionView()
+               blurEffect = configureBlurEffect()
+               blurEffect.isHidden = true
+               
+               observers()
     }
+    
+
     override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        self.tabBarController?.tabBar.tintColor = Colors.schedulerPink
-    }
- 
+           super.viewDidAppear(true)
+           self.tabBarController?.tabBar.tintColor = Colors.schedulerPink
+       }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        loadData()
-    }
-    
+       
+       override func viewWillAppear(_ animated: Bool) {
+           super.viewWillAppear(animated)
+           loadData()
+       }
+       
     func loadData(){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -57,16 +56,13 @@ class PositionsCollectionViewController: UIViewController{
         let context = appDelegate.persistentContainer.viewContext
         
         do {
-          positions = try context.fetch(Positions.fetchRequest())
+          positions = try context.fetch(Position.fetchRequest())
         } catch let error as NSError {
           print("Could not fetch. \(error), \(error.userInfo)")
         }
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
-    }
-    func deleteAllData(_ entity:String) {
-        
     }
     
     func configureNavigationAndTabBarControllers(){
@@ -97,7 +93,6 @@ class PositionsCollectionViewController: UIViewController{
         
         
     }
-    
     func setTableViewDelegates(){
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -155,15 +150,16 @@ class PositionsCollectionViewController: UIViewController{
         positionDetails.isHidden = true
     }
     
-    func backFromEditPositionControllerToDetailsController(data: NSManagedObject){
+    func backFromEditPositionControllerToDetailsController(data: Position){
         print("Data received: \(data)")
-        positionDetails.nameLabel.text = data.value(forKey: "name") as? String
-        positionDetails.beforeWorkLabel.text = data.value(forKey: "beforeWork") as? String
-        positionDetails.afterWorkLabel.text = data.value(forKey: "afterWork") as? String
+        positionDetails.nameLabel.text = data.name
+        positionDetails.beforeWorkLabel.text = data.beforeWork
+        positionDetails.afterWorkLabel.text = data.afterWork
         positionDetails.staticPosition = data
         positionToEdit = data
         
     }
+
 }
 
 extension PositionsCollectionViewController: UICollectionViewDelegate,UICollectionViewDataSource{
@@ -179,7 +175,7 @@ extension PositionsCollectionViewController: UICollectionViewDelegate,UICollecti
         }
     
         let position = positions[indexPath.row]
-        cell.nameLabel.text = position.value(forKeyPath: "name") as? String
+        cell.nameLabel.text = position.name
         let numbersOfCharactersInTheName: Int? = cell.nameLabel.text!.trimmingCharacters(in: .whitespacesAndNewlines).count
         
         cell.configureNameLabel(numbersOfCharactersInTheName!)
@@ -191,9 +187,9 @@ extension PositionsCollectionViewController: UICollectionViewDelegate,UICollecti
         blurEffect.isHidden = false
         positionDetails = configurePopUpPositionDetails()
         let position = positions[indexPath.row]
-        positionDetails.nameLabel.text = position.value(forKey: "name") as? String
-        positionDetails.beforeWorkLabel.text = position.value(forKey: "beforeWork") as? String
-        positionDetails.afterWorkLabel.text = position.value(forKey: "afterWork") as? String
+        positionDetails.nameLabel.text = position.name
+        positionDetails.beforeWorkLabel.text = position.beforeWork
+        positionDetails.afterWorkLabel.text = position.afterWork
         positionDetails.staticPosition = position
         positionToEdit = position
         
@@ -201,6 +197,7 @@ extension PositionsCollectionViewController: UICollectionViewDelegate,UICollecti
     }
     
 }
+
 extension PositionsCollectionViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

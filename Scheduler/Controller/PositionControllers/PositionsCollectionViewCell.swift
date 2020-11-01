@@ -2,16 +2,13 @@
 //  PositionsCollectionViewCell.swift
 //  Scheduler
 //
-//  Created by Cezary Przygodzki on 20/07/2020.
-//  Copyright © 2020 PekackaPrzygodzki. All rights reserved.
+//  Created by Cezary Przygodzki on 01/11/2020.
+//  Copyright © 2020 Siemaszefie. All rights reserved.
 //
 
 import UIKit
-import CoreData
 
-
-class PositionsCollectionViewCell: UICollectionViewCell{
-    
+class PositionsCollectionViewCell: UICollectionViewCell {
     
     var nameLabel = UILabel()
     var arrowButton = UIButton()
@@ -21,9 +18,7 @@ class PositionsCollectionViewCell: UICollectionViewCell{
         self.layer.cornerRadius = 15
         addSubview(nameLabel)
         addSubview(arrowButton)
-        //let posName = nameLabel.text
-       // let posNameCount = posName!.count
-        //print("\(posName) has \(posNameCount) characters in name")
+
         configureArrowButton()
         backgroundColor = Colors.schedulerPink
     }
@@ -87,4 +82,6 @@ class PositionsCollectionViewCell: UICollectionViewCell{
             //self.performSegue(withIdentifier: "profileDetails", sender: self)
         
     }
+    
+    
 }

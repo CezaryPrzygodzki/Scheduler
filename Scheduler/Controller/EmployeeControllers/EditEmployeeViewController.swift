@@ -2,8 +2,8 @@
 //  EditEmployeeViewController.swift
 //  Scheduler
 //
-//  Created by Cezary Przygodzki on 17/10/2020.
-//  Copyright © 2020 PekackaPrzygodzki. All rights reserved.
+//  Created by Cezary Przygodzki on 01/11/2020.
+//  Copyright © 2020 Siemaszefie. All rights reserved.
 //
 
 import UIKit
@@ -11,7 +11,7 @@ import CoreData
 
 class EditEmployeeViewController: AddEmployeeViewController {
 
-    var employeeToEdit: NSManagedObject?
+    var employeeToEdit: Employee?
     var employeeController: EmployeeViewController?
     
     override func configureNavigationBar() {
@@ -23,11 +23,11 @@ class EditEmployeeViewController: AddEmployeeViewController {
         super.viewDidLoad()
 
         addEmployeeButton.setTitle("Zapisz", for: .normal)
-        employeeNameTextField.text = employeeToEdit!.value(forKey: "name") as? String
-        employeeSurnameTextField.text = employeeToEdit!.value(forKey: "surname") as? String
-        positionLabel.text = employeeToEdit!.value(forKey: "position") as? String
-        if let image = employeeToEdit?.value(forKey: "image"){
-            let imageToShow = UIImage(data: image as! Data)
+        employeeNameTextField.text = employeeToEdit!.name
+        employeeSurnameTextField.text = employeeToEdit!.surname
+        positionLabel.text = employeeToEdit!.position
+        if let image = employeeToEdit?.image{
+            let imageToShow = UIImage(data: image)
             profileImageView = createProfileImageView(photo: imageToShow!)
         }
     }
@@ -44,12 +44,12 @@ class EditEmployeeViewController: AddEmployeeViewController {
         
         let employee = employeeToEdit
         
-        employee?.setValue(name, forKey: "name")
-        employee?.setValue(surname, forKey: "surname")
-        employee?.setValue(position, forKey: "position")
+        employee?.name = name
+        employee?.surname = surname
+        employee?.position = position
         if let image = profileImageView.image {
             let imageData = image.jpegData(compressionQuality: 1)
-            employee?.setValue(imageData, forKey: "image")
+            employee?.image = imageData
             print("Added with photo")
             
         }
@@ -69,3 +69,4 @@ class EditEmployeeViewController: AddEmployeeViewController {
    
 
 }
+

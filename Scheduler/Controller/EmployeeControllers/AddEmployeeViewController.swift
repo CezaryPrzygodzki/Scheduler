@@ -2,14 +2,15 @@
 //  AddEmployeeViewController.swift
 //  Scheduler
 //
-//  Created by Cezary Przygodzki on 12/10/2020.
-//  Copyright © 2020 PekackaPrzygodzki. All rights reserved.
+//  Created by Cezary Przygodzki on 01/11/2020.
+//  Copyright © 2020 Siemaszefie. All rights reserved.
 //
 
 import UIKit
 import CoreData
 
 class AddEmployeeViewController: UIViewController {
+
     let padding = 25
     let topPadding: CGFloat = 70
     
@@ -23,16 +24,14 @@ class AddEmployeeViewController: UIViewController {
     var profileButton = UIButton()
 
     let pickerView = UIPickerView()
-    let dataPicker : [Employee2.positionType] = [.doradca,.starszy,.ekspert] //tymczasowo, do podmiany na stanowiska z 3 zakładki
+    let dataPicker : [Employee.positionType] = [.doradca,.starszy,.ekspert]
     
 
     var addEmployeeButton = UIButton()
     
-    var employee = NSManagedObject()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
 
         configureNavigationBar()
         
@@ -51,47 +50,9 @@ class AddEmployeeViewController: UIViewController {
         
         addEmployeeButton = createAddEmployeeButton()
         view.addSubview(addEmployeeButton)
-        
     }
     
-    func power_of_two(power: Int) -> Int {
-        var wynik : Int = 2
-        var power = power
-        if ( power == 0 ) { return 1 }
-        if ( power == 1 ) { return 2 }
-        while ( power > 1 ) {
-            wynik *= 2
-            power -= 1
-        }
-    return wynik
-    }
     
-    func fibon (ileLiczb: Int) -> Int {
-        var f1 = 0
-        var f2 = 1
-        
-        for _ in 0...ileLiczb-1 {
-            let pomocnicza = f1 + f2
-            f1 = f2
-            f2 = pomocnicza
-        }
-        return f1
-    }
-    
-    func fibon2 (_ ileLiczb: Int) -> Int {
-        var ile = ileLiczb
-        var f1 = 0
-        var f2 = 1
-        
-        while( ile > 0 ) {
-            let pomocnicza = f1 + f2
-            f1 = f2
-            f2 = pomocnicza
-            ile -= 1
-        }
-        return f1
-    }
-
     func configureNavigationBar() {
         let height = 100
         
@@ -270,55 +231,18 @@ class AddEmployeeViewController: UIViewController {
         
         return positionButton
     }
-    
-    @objc
-    func rightHandAction() {
-        
-        
-        if ( pickerView.isHidden == false ) {
-//            UIView.animate(withDuration: 1, delay: 0, options:[], animations: {
-//                self.positionButton.transform = CGAffineTransform(rotationAngle: CGFloat.pi * 2)
-//            }, completion: nil)
-
-//
-//            UIView.animateKeyframes(withDuration: 3,
-//                                    delay: 0,
-//                                    options:[],
-//                                    animations: { UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1) {
-//                                            self.positionButton.rotate()
-//                                        }
-//
-//                                        UIView.addKeyframe(withRelativeStartTime: 1, relativeDuration: 1) {
-//                                            self.positionButton.setImage(UIImage(systemName: "chevron.down"), for: .normal)
-//                                        }
-//
-//            }, completion: nil)
-            self.positionButton.setImage(UIImage(systemName: "chevron.down"), for: .normal)
-            pickerView.isHidden = true
-
-        } else {
+     @objc func rightHandAction() {
             
-//            UIView.animateKeyframes(withDuration: 3,
-//                                    delay: 0,
-//                                    options:[],
-//                                    animations: { UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1) {
-//                                            self.positionButton.rotate()
-//                                        }
-//
-//                                        UIView.addKeyframe(withRelativeStartTime: 1, relativeDuration: 1) {
-//                                            self.positionButton.setImage(UIImage(systemName: "chevron.up"), for: .normal)
-//                                        }
-//
-//            }, completion: nil)
-            self.positionButton.setImage(UIImage(systemName: "chevron.up"), for: .normal)
-            pickerView.isHidden = false
+            
+            if ( pickerView.isHidden == false ) {
+                self.positionButton.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+                pickerView.isHidden = true
 
+            } else {
+                self.positionButton.setImage(UIImage(systemName: "chevron.up"), for: .normal)
+                pickerView.isHidden = false
+            }
         }
-        
-    }
-    
-    
-    
     func configurePickerView(){
         pickerView.frame = CGRect(x: 0,
                                   y: positionLabel.frame.origin.y + positionLabel.frame.size.height,
@@ -354,7 +278,7 @@ class AddEmployeeViewController: UIViewController {
         return addButton
         
     }
-    
+
     @objc func addButtonFunc(sender: UIButton!){
         
         let name = employeeNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -380,17 +304,15 @@ class AddEmployeeViewController: UIViewController {
             
             let managedContext = appDelegate.persistentContainer.viewContext
                    
-            let entity = NSEntityDescription.entity(forEntityName: "Employee", in: managedContext)!
+            let employee = Employee(context: managedContext)
             
-            employee = NSManagedObject(entity: entity, insertInto: managedContext)
-            
-            employee.setValue(name, forKey: "name")
-            employee.setValue(surname, forKey: "surname")
-            employee.setValue(position, forKey: "position")
+            employee.name = name
+            employee.surname = surname
+            employee.position = position
             
             if let image = profileImageView.image {
                 let imageData = image.jpegData(compressionQuality: 1)
-                employee.setValue(imageData, forKey: "image")
+                employee.image = imageData
                 print("Added with photo")
                 
             }
@@ -408,6 +330,7 @@ class AddEmployeeViewController: UIViewController {
         
         
     }
+
 }
 
 extension AddEmployeeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{

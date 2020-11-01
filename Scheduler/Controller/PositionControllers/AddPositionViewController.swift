@@ -2,21 +2,22 @@
 //  AddPositionViewController.swift
 //  Scheduler
 //
-//  Created by Cezary Przygodzki on 25/07/2020.
-//  Copyright © 2020 PekackaPrzygodzki. All rights reserved.
+//  Created by Cezary Przygodzki on 01/11/2020.
+//  Copyright © 2020 Siemaszefie. All rights reserved.
 //
 
 import UIKit
 import CoreData
 
-class AddPositionViewController: UIViewController{
+class AddPositionViewController: UIViewController {
+
     let padding = 25
     var topPadding = 25
     var textFieldName = UITextField()
     var textFieldBeforeWork = UITextView()
     var textFieldAfterWork = UITextView()
     var addButton = UIButton()
-    var position = NSManagedObject()
+
     
 
     
@@ -73,55 +74,57 @@ class AddPositionViewController: UIViewController{
         return textFieldName
     }
     
-    func createTextBeforeWork()->UITextView{
-        let textFieldBeforeWork = UITextView()
-        //placeholder
-        textFieldBeforeWork.textColor = Colors.schedulerPink
-        textFieldBeforeWork.text = "Przed otwarciem: "
-        
-        //size and position in view
-        textFieldBeforeWork.frame.size.width = view.frame.size.width - (CGFloat(padding)*2)
-        textFieldBeforeWork.frame.size.height = 200
-        
-        textFieldBeforeWork.frame = CGRect(x: self.view.frame.size.width/2 - textFieldBeforeWork.frame.size.width/2,
-                                           y: CGFloat(topPadding) + textFieldName.frame.size.height + CGFloat(padding),
-                                     width: textFieldBeforeWork.frame.size.width,
-                                     height: textFieldBeforeWork.frame.size.height)
-        
-        //borders
-        textFieldBeforeWork.layer.borderWidth = 3
-        textFieldBeforeWork.layer.borderColor = Colors.schedulerLightGray!.cgColor
-        textFieldBeforeWork.backgroundColor = Colors.schedulerBackground
-        
-        self.view.addSubview(textFieldBeforeWork)
 
-        return textFieldBeforeWork
-    }
-    func createTextAfterWork()->UITextView{
-        let textFieldAfterWork = UITextView()
-        
-        //placeholder
-        textFieldAfterWork.textColor = Colors.schedulerPink
-        textFieldAfterWork.text = "Po otwarciu: "
-        
-        //size and position in view
-        textFieldAfterWork.frame.size.width = view.frame.size.width - (CGFloat(padding)*2)
-        textFieldAfterWork.frame.size.height = 200
-        
-        textFieldAfterWork.frame = CGRect(x: self.view.frame.size.width/2 - textFieldAfterWork.frame.size.width/2,
-                                          y: CGFloat(topPadding) + textFieldName.frame.size.height + CGFloat(padding) + textFieldBeforeWork.frame.size.height + CGFloat(padding),
-                                          width: textFieldAfterWork.frame.size.width,
-                                          height: textFieldAfterWork.frame.size.height)
-        
-        //borders
-        textFieldAfterWork.layer.borderColor = Colors.schedulerLightGray!.cgColor
-        textFieldAfterWork.layer.borderWidth = 3
-        textFieldAfterWork.backgroundColor = Colors.schedulerBackground
-        
-        self.view.addSubview(textFieldAfterWork)
-        
-        return textFieldAfterWork
-    }
+    func createTextBeforeWork()->UITextView{
+          let textFieldBeforeWork = UITextView()
+          //placeholder
+          textFieldBeforeWork.textColor = Colors.schedulerPink
+          textFieldBeforeWork.text = "Przed otwarciem: "
+          
+          //size and position in view
+          textFieldBeforeWork.frame.size.width = view.frame.size.width - (CGFloat(padding)*2)
+          textFieldBeforeWork.frame.size.height = 200
+          
+          textFieldBeforeWork.frame = CGRect(x: self.view.frame.size.width/2 - textFieldBeforeWork.frame.size.width/2,
+                                             y: CGFloat(topPadding) + textFieldName.frame.size.height + CGFloat(padding),
+                                       width: textFieldBeforeWork.frame.size.width,
+                                       height: textFieldBeforeWork.frame.size.height)
+          
+          //borders
+          textFieldBeforeWork.layer.borderWidth = 3
+          textFieldBeforeWork.layer.borderColor = Colors.schedulerLightGray!.cgColor
+          textFieldBeforeWork.backgroundColor = Colors.schedulerBackground
+          
+          self.view.addSubview(textFieldBeforeWork)
+
+          return textFieldBeforeWork
+      }
+      func createTextAfterWork()->UITextView{
+          let textFieldAfterWork = UITextView()
+          
+          //placeholder
+          textFieldAfterWork.textColor = Colors.schedulerPink
+          textFieldAfterWork.text = "Po otwarciu: "
+          
+          //size and position in view
+          textFieldAfterWork.frame.size.width = view.frame.size.width - (CGFloat(padding)*2)
+          textFieldAfterWork.frame.size.height = 200
+          
+          textFieldAfterWork.frame = CGRect(x: self.view.frame.size.width/2 - textFieldAfterWork.frame.size.width/2,
+                                            y: CGFloat(topPadding) + textFieldName.frame.size.height + CGFloat(padding) + textFieldBeforeWork.frame.size.height + CGFloat(padding),
+                                            width: textFieldAfterWork.frame.size.width,
+                                            height: textFieldAfterWork.frame.size.height)
+          
+          //borders
+          textFieldAfterWork.layer.borderColor = Colors.schedulerLightGray!.cgColor
+          textFieldAfterWork.layer.borderWidth = 3
+          textFieldAfterWork.backgroundColor = Colors.schedulerBackground
+          
+          self.view.addSubview(textFieldAfterWork)
+          
+          return textFieldAfterWork
+      }
+    
     
     func createAddButton() -> UIButton {
         let addButton = UIButton()
@@ -170,14 +173,11 @@ class AddPositionViewController: UIViewController{
         
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        let entity = NSEntityDescription.entity(forEntityName: "Positions", in: managedContext)!
+        let position = Position(context: managedContext)
         
-        position = NSManagedObject(entity: entity, insertInto: managedContext)
-        
-        
-        position.setValue(name, forKey: "name")
-        position.setValue(beforeWork, forKey: "beforeWork")
-        position.setValue(afterWork, forKey: "afterWork")
+        position.name = name
+        position.beforeWork = beforeWork
+        position.afterWork = afterWork
         
         do {
           try managedContext.save()
@@ -187,15 +187,12 @@ class AddPositionViewController: UIViewController{
         }
         
         print("wysłano delegata z \(position)")
-        //delegate?.didChange(position: position)
+        
         NotificationCenter.default.post(name: Notification.Name("reload"), object: nil)
         dismiss(animated: true, completion: nil)
         
         }
     }
-    
-    
-    
 }
 extension AddPositionViewController: UITextViewDelegate {
     
@@ -222,4 +219,3 @@ extension AddPositionViewController: UITextViewDelegate {
         }
     }
 }
-

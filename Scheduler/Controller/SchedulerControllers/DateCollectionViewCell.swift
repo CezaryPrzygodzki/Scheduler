@@ -1,14 +1,14 @@
 //
-//  DateCell.swift
+//  DateCollectionViewCell.swift
 //  Scheduler
 //
-//  Created by Cezary Przygodzki on 17/09/2020.
-//  Copyright © 2020 PekackaPrzygodzki. All rights reserved.
+//  Created by Cezary Przygodzki on 01/11/2020.
+//  Copyright © 2020 Siemaszefie. All rights reserved.
 //
 
 import UIKit
 
-class DateCell: UICollectionViewCell {
+class DateCollectionViewCell: UICollectionViewCell {
     
     let dateLabel = UILabel()
     
